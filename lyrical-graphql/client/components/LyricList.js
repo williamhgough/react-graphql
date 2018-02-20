@@ -1,21 +1,15 @@
 import React, { Component } from "react";
 import { graphql } from "react-apollo";
-import { likeLyric, findLyricsBySongId } from "../queries/songs";
+import { likeLyric } from "../queries/songs";
 
 class LyricList extends Component {
-    likeSong(event, id) {
+    likeSong(event, id, likes) {
         event.preventDefault();
 
         this.props.mutate({
             variables: {
                 id,
             },
-            refetchQueries: [
-                {
-                    query: findLyricsBySongId,
-                    variables: { id: this.props.songId },
-                },
-            ],
         });
     }
 
@@ -30,7 +24,11 @@ class LyricList extends Component {
                                 <span className="right">
                                     <i
                                         onClick={e =>
-                                            this.likeSong(e, lyric.id)
+                                            this.likeSong(
+                                                e,
+                                                lyric.id,
+                                                lyric.likes,
+                                            )
                                         }
                                         className="material-icons"
                                     >

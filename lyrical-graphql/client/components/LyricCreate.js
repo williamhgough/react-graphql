@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { graphql } from "react-apollo";
-import { addLyricToSong, findLyricsBySongId } from "../queries/songs";
+import { addLyricToSong } from "../queries/songs";
 
 class LyricCreate extends Component {
     constructor(props) {
@@ -17,12 +17,6 @@ class LyricCreate extends Component {
                 songId: this.props.songId,
                 content: this.state.lyric,
             },
-            refetchQueries: [
-                {
-                    query: findLyricsBySongId,
-                    variables: { id: this.props.songId },
-                },
-            ],
         });
 
         this.setState({ lyric: "" });
@@ -31,8 +25,8 @@ class LyricCreate extends Component {
     render() {
         return (
             <div>
-                <h4>Add Lyric</h4>
                 <form onSubmit={this.addLyrics.bind(this)}>
+                    <label>Add Lyric</label>
                     <input
                         type="text"
                         value={this.state.lyric}

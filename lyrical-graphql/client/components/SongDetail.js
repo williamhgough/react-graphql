@@ -19,7 +19,7 @@ class SongDetail extends Component {
                 </Link>
                 <h1>{song.title}</h1>
                 <LyricList lyrics={song.lyrics} songId={song.id} />
-                <LyricCreate songId={song.id} />
+                <LyricCreate />
             </div>
         );
     }
