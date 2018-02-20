@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import { graphql } from "react-apollo";
 import { Link } from "react-router";
-import SongItem from "./SongItem";
 import { fetchSongsQuery, deleteSongMutation } from "../queries/songs";
 
 class SongList extends Component {
     deleteSong(id) {
-        this.props.mutate({
-            variables: { id },
-            refetchQueries: [{ query: fetchSongsQuery }],
-        });
+        this.props
+            .mutate({
+                variables: { id },
+            })
+            .then(() => this.props.data.refetch());
     }
 
     renderSongs() {

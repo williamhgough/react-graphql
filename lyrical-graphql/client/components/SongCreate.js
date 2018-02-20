@@ -26,7 +26,7 @@ class SongCreate extends Component {
     render() {
         return (
             <div>
-                <Link to="/" className="">
+                <Link to="/" className="card-action">
                     Back
                 </Link>
                 <h1>Add Song.</h1>
